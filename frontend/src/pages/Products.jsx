@@ -25,7 +25,8 @@ export default function Products() {
         const d = res.data.data
         if (d?.data) {
           setProducts(d.data)
-          setPagination({ current_page: d.current_page, last_page: d.last_page, total: d.total })
+          const meta = d.meta || d
+          setPagination({ current_page: meta.current_page, last_page: meta.last_page, total: meta.total })
         } else {
           setProducts(d || [])
           setPagination(null)

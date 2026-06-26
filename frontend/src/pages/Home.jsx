@@ -13,7 +13,10 @@ export default function Home() {
 
   useEffect(() => {
     getProducts({ per_page: 8 })
-      .then((res) => setFeaturedProducts(res.data.data?.data || res.data.data || []))
+      .then((res) => {
+        const d = res.data.data
+        setFeaturedProducts(d?.data || d || [])
+      })
       .catch(() => setFeaturedProducts([]))
       .finally(() => setLoadingProducts(false))
 
